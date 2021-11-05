@@ -11,18 +11,24 @@ export default function Home() {
       <Map />
       <ActionItems >
         <Header>
+
           <UberLogo src='https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg' />
+
           <Profile>
+
             <Name>Devlin Rocha</Name>
             <UserImage src='https://i.imgur.com/p1gz3vI.jpg' />
+
           </Profile>
+
         </Header>
         <ActionButtons>
+
           <Link href='/search' >
-          <ActionButton>
-            <ActionButtonImage src='https://i.ibb.co/cyvcpfF/uberx.png' />
-            Ride
-          </ActionButton>
+            <ActionButton>
+              <ActionButtonImage src='https://i.ibb.co/cyvcpfF/uberx.png' />
+              Ride
+            </ActionButton>
           </Link>
 
           <ActionButton>

@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import tw from 'tailwind-styled-components'
 import Link from 'next/link';
 
 function Search() {
+
+    const [pickup, setPickup] = useState('');
+    const [dropoff, setDropoff] = useState('');
+
     return (
         <Wrapper>
             <ButtonContainer>
@@ -19,24 +24,41 @@ function Search() {
 
                 <InputBoxes>
 
-                    <Input placeholder='Enter pickup location' />
-                    <Input placeholder='Where to?' />
+                    <Input
+                        placeholder='Enter pickup location'
+                        value={pickup}
+                        onChange={e => setPickup(e.target.value)}
+                    />
+                    <Input
+                        placeholder='Where to?'
+                        value={dropoff}
+                        onChange={e => setDropoff(e.target.value)}
+                    />
 
                 </InputBoxes>
                 <PlusIcon src='https://img.icons8.com/ios/50/000000/plus-math.png' />
             </InputContainer>
 
-                <SavedPlaces>
-                    <StartIcon src='https://img.icons8.com/ios-filled/50/ffffff/star--v1.png' />
-                    Saved Images
-                </SavedPlaces>
+            <SavedPlaces>
+                <StartIcon src='https://img.icons8.com/ios-filled/50/ffffff/star--v1.png' />
+                Saved Images
+            </SavedPlaces>
 
+            <Link href={{
+                pathname: '/confirm',
+                query: {
+                    pickup: pickup,
+                    dropoff: dropoff,
+                }
+            }}>
                 <ConfirmContainer>
                     <ConfirmButton>Confirm Locations</ConfirmButton>
                 </ConfirmContainer>
+            </Link>
+
         </Wrapper>
     )
-}
+};
 
 export default Search;
 
@@ -49,7 +71,7 @@ const ButtonContainer = tw.div`
 `
 
 const BackButton = tw.img`
-    h-12
+    h-12 cursor-pointer
 `
 
 const FromToIcons = tw.div`
@@ -93,7 +115,7 @@ const StartIcon = tw.img`
 `
 
 const ConfirmContainer = tw.div`
-    bg-black flex flex-col items-center justify-center h-10 m-4
+    bg-black text-white text-center mt-2 mx-4 px-4 py-3 text-2xl cursor-pointer
 `
 
 const ConfirmButton = tw.div`

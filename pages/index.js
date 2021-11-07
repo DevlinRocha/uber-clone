@@ -1,10 +1,31 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import tw from 'tailwind-styled-components'
 import Map from './components/Map';
 import Link from 'next/link';
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    return onAuthStateChanged(auth, user => {
+      if (user) {
+        setUser({
+          name: user.displayName,
+          photoUrl: user.photoURL,
+        });
+      } else {
+        setUser(null);
+        router.push('/login');
+      }
+    })
+  }, []);
 
   return (
     <Wrapper>
@@ -12,12 +33,15 @@ export default function Home() {
       <ActionItems >
         <Header>
 
-          <UberLogo src='https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg' />
+          <UberLogo src='https://i.ibb.co/ZMhy8ws/uber-logo.png' />
 
           <Profile>
 
-            <Name>Devlin Rocha</Name>
-            <UserImage src='https://i.imgur.com/p1gz3vI.jpg' />
+            <Name>{user && user.name}</Name>
+            <UserImage
+              src={user && user.photoUrl}
+              onClick={() => signOut(auth)}
+            />
 
           </Profile>
 
@@ -53,7 +77,7 @@ export default function Home() {
 };
 
 const Wrapper = tw.div`
-  flex flex-col bg-red-300 h-screen
+  flex flex-col h-screen
 `
 
 const ActionItems = tw.div`
@@ -77,7 +101,7 @@ const Name = tw.div`
 `
 
 const UserImage = tw.img`
-  h-12 w-12 rounded-full border border-gray-200 p-px object-cover
+  h-12 w-12 rounded-full border border-gray-200 p-px object-cover cursor-pointer
 `
 
 const ActionButtons = tw.div`
@@ -85,7 +109,7 @@ const ActionButtons = tw.div`
 `
 
 const ActionButton = tw.div`
-  bg-gray-200 flex-1 m-1 h-32 flex flex-col items-center justify-center rounded-lg transform hover:scale-105 transition text-xl
+  flex flex-col flex-1 bg-gray-200 m-1 h-32 items-center justify-center rounded-lg transform hover:scale-105 transition text-xl
 `
 
 const ActionButtonImage = tw.img`

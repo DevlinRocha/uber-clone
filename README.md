@@ -1,6 +1,6 @@
 # Uber Clone
 
-Full-stack Uber recreation built with React, Next.js, styled-components, Tailwind, and Mapbox.
+Full-stack Uber recreation built with React, Next.js, Firebase, styled-components, Tailwind, and Mapbox.
 
 ## Getting Started
 
@@ -15,6 +15,7 @@ npm run dev
 
 * [React](https://reactjs.org/)
 * [Next.js](https://nextjs.org/)
+* [Firebase](https://firebase.google.com/)
 * [styled-components](https://styled-components.com/)
 * [Tailwind](https://tailwindcss.com/)
 * [Mapbox](https://www.mapbox.com/)

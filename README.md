@@ -4,12 +4,16 @@ Full-stack Uber recreation built with React, Next.js, Firebase, styled-component
 
 ## Getting Started
 
+First, clone the repository and run the development server:
+
 ```
 git clone git@github.com:DevlinRocha/uber-clone.git
 cd uber-clone
 npm install
 npm run dev
 ```
+
+Then open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## Development
 
